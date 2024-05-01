@@ -16,7 +16,7 @@ const app = express()
 const __dirname = path.resolve();
 
 app.use(express.json());
-app.use(express.static(path.join( __dirname,"/client/build")))
+// app.use(express.static(path.join( __dirname,"/client/build")))
 const corsOptions = {
     credentials: true,
     origin: "*",
@@ -38,17 +38,14 @@ app.get('/check', (req, res) => {
     res.send('Yes you are working')
 })
 
-app.get("*", (req, res) => {
-    // res.sendFile(path.resolve(__dirname,"client","dist", "index.html"));
-    res.sendFile(path.resolve(__dirname,"client","build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname,"client","build", "index.html"));
+// });
 
 
 const port  = process.env.PORT || 8000
 app.listen(port, () => {
     connectToMongoDB();
     console.log(`Hello`)
-    console.log(__dirname)
-    console.log(path.resolve(__dirname, "client", "dist", "index.html"))
 })
 
